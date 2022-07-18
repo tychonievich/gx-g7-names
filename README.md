@@ -46,7 +46,7 @@ This structure is intended to be the GEDCOM 7 parallel of the `type` property of
 The payload of this structure should be an enumerated value documented by GEDCOM-X for that property, namely
 
 | URI | description |
-|:----|;------------|
+|:----|:------------|
 | `http://gedcomx.org/Prefix` | A name prefix. |
 | `http://gedcomx.org/Suffix` | A name suffix. |
 | `http://gedcomx.org/Given` | A given name. |

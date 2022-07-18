@@ -4,8 +4,8 @@ The purpose of this set of extensions to [GEDCOM 7.0](https://gedcom.io) is to p
 
 This document is distributed under a Creative Commons Attribution-ShareAlike license. For details, see <http://creativecommons.org/licenses/by-sa/4.0/>.
 
-The descriptions of enumerated values in the `http://gedcomx.org/` namespace in this document are copied verbatim from [GEDCOM-X](https://gedcomx.org), copyright Intellectual Reserve, Inc., as is permitted by the cc-by-sa license used by both that project and this one.
-The remaining text is by Luther Tychonievich.
+Most of this document is the original work of Luther Tychonievich.
+However, the descriptions of enumerated values in the `http://gedcomx.org/` namespace are copied verbatim from [GEDCOM-X](https://gedcomx.org), copyright Intellectual Reserve, Inc., as is permitted by the cc-by-sa license used by both that project and this one.
 
 This document uses prefix notation:
 any URI beginning with one of the following short prefixes followed by a colon

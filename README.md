@@ -1,6 +1,6 @@
 # GEDCOM-X Names in GEDCOM 7
 
-The purpose of this set of extensions to [GEDCOM 7.0](https://gedcom.io) is to allow [GEDCOM-X](https://gedcomx.org)'s name structures in GEDOCM 7.
+The purpose of this set of extensions to [GEDCOM 7.0](https://gedcom.io) is to port [GEDCOM-X](https://gedcomx.org)'s more versatile name structures in GEDOCM 7.
 
 This document uses prefix notation:
 any URI beginning with one of the following short prefixes followed by a colon
@@ -19,10 +19,12 @@ This extension consists of a three new extension structure types and a large num
 Extend the `PERSONAL_NAME_PIECES` production [in the GEDCOM 7 specification](https://gedcom.io/specifications/FamilySearchGEDCOMv7.html#PERSONAL_NAME_PIECES) with the following new term:
 
 ```gedstruct
-n _N_PART <Text>                        {0:M}  ext:name-part
-  +1 _NP_TYPE <Enum>                    {0:1}  ext:name-part-type
-  +1 _NP_QUAL <Enum>                    {0:M}  ext:name-part-qualifier
+n _N_PART <Text>             {0:M}  ext:name-part
+  +1 _NP_TYPE <Enum>         {0:1}  ext:name-part-type
+  +1 _NP_QUAL <Enum>         {0:M}  ext:name-part-qualifier
 ```
+
+It is worth noting that, [as with all documented GEDCOM 7 extensions](https://gedcom.io/specifications/FamilySearchGEDCOMv7.html#extension-tags), the tag names above are only recommendations: it is the URIs, not the tag names, that define the meaning of these structures. See [Recommended Tags](#recommended-tags) for more.
 
 ### name-part
 

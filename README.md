@@ -1,3 +1,5 @@
+# GEDCOM-X Names in GEDCOM 7
+
 The purpose of this set of extensions to [GEDCOM 7.0](https://gedcom.io) is to allow [GEDCOM-X](https://gedcomx.org)'s name structures in GEDOCM 7.
 
 This document uses prefix notation:
@@ -12,9 +14,9 @@ is shorthand for a URI beginning with the corresponding URI prefix
 
 This extension consists of a three new extension structure types and a large number of new enumeration values, most taken directly from GEDCOM-X.
 
-## Usage
+## Extension to spec
 
-We extend the `PERSONAL_NAME_PIECES` production with the following new term:
+Extend the `PERSONAL_NAME_PIECES` production [in the GEDCOM 7 specification](https://gedcom.io/specifications/FamilySearchGEDCOMv7.html#PERSONAL_NAME_PIECES) with the following new term:
 
 ```gedstruct
 n _N_PART <Text>                       {0:M}  ext:name-part
@@ -22,7 +24,7 @@ n _N_PART <Text>                       {0:M}  ext:name-part
   +1 _NP_QUAL <Enum>                    {0:M}  ext:name-part-qualifier
 ```
 
-## name-part
+### name-part
 
 URI: `https://tychonievich.gedcom.io/gx-g7-names#name-part`
 
@@ -34,7 +36,7 @@ The payload of this structure should be a part of the name.
 
 The preferred order of `ext:PART` structures is the preferred display order of the name parts.
 
-## name-part-type
+### name-part-type
 
 URI: `https://tychonievich.gedcom.io/gx-g7-names#name-part-type`
 
@@ -54,7 +56,7 @@ The payload of this structure should be an enumerated value documented by GEDCOM
 
 The `ext:name-part-type` structure is optional, and should only be included if exactly one of the above enumerated values correctly describes the name part.
 
-## ext:name-part-qualifier
+### ext:name-part-qualifier
 
 URI: `https://tychonievich.gedcom.io/gx-g7-names#name-part-qualifier`
 
@@ -86,14 +88,34 @@ The payload of this structure should be an enumerated value [documented by GEDCO
 
 Note that this extension adds one qualifier not present in GEDCOM-X:
 
-### hidden
+#### hidden
 
 URI: `https://tychonievich.gedcom.io/gx-g7-names#hidden`
 
 There may be cases where a part of a name should be represented in the data but not displayed when the name is formatted.
 For example, there is a Polish surname that is spelled "Kowalski" for men and mixed-gender groups but "Kowalska" for women; a researcher may wish to record both forms, but add the `ext:hidden` qualifier to the one that does not match the gender of the individual.
 
-# Recommended Tags
+### Additional constraints
+
+To be fully interoperable with other parts of GEDCOM 7, applications should impose the following limitations on users.
+
+For the purpose of these limitations, a set of name parts are said to be *contiguous* if, after removing any `ext:hidden` parts, they are adjacent in the list of name parts.
+
+* Some applications (and some governments; see, e.g. [rufnames](https://en.wikipedia.org/wiki/Rufname)) require at most one primary given name.
+    This means that if there is more than one part with qualifier `gx:Primary` and type `gx:Given`, all such parts must be contiguous.
+    
+    In most cases, a single `gx:Primary` `gx:Given` part is adequate, but there may be cases when additional details (such as particles, root names, etc) will be added about parts of the primary given name, necessitating breaking it up into several parts.
+
+* The `g7:type-Name` datatype requires at most one primary surname, as identified by slashes in the payload.
+    This means that 
+    
+    * If there is more than one part with qualifier `gx:Primary` and type `gx:Surname`, all such parts must be contiguous.
+    * If there is no part with `gx:Primary` and type `gx:Surname`, then all parts with type `gx:Surname` must be contiguous.
+
+    In some cases a single `gx:Primary` `gx:Surname` part is adequate, but there may be cases when additional details (such as particles, root names, etc) will be added about parts of the primary surname name, necessitating breaking it up into several parts.
+
+
+## Recommended Tags
 
 Per the GEDOCM 7 specification, the tags used for documented extension structures may be changed to avoid tag collisions between independent extensions. However, the following tags are recommended:
 
@@ -128,32 +150,28 @@ Per the GEDOCM 7 specification, the tags used for documented extension structure
 2 TAG _NPQ_HIDDEN https://tychonievich.gedcom.io/gx-g7-names#hidden
 ```
 
-# Deriving other name components from `ext:name-part`s
+## Name parts as the only stored data
 
 It is intended that `ext:name-part` be used in such a way that all other elements of a `g7:INDI-NAME` or `g7:NAME-TRAN` can be reconstructed unambiguously from the `ext:name-part`s alone.
 
-To achieve this,
+To achieve this, every character in the name's displayed form should be in a `ext:name-part`. This may mean there are `ext:name-part`s with no type or qualifier that store spacing, punctuation, etc.
 
-* Every character in the name's displayed form should be in a `ext:name-part`.
-    This may mean adding `ext:name-part`s with no type of qualifiers to store spacing, punctuation, etc.
+To populate the other name data from name parts,
 
-* At most one part with type `gx:Given` should have the `gx:Primary` qualifier
-
-* At most one part with type `gx:Surname` should have the `gx:Primary` qualifier
-
-* Create the `g7:PersonalName` payload by 
+* Create the `g7:type-NAME` payload by 
     
     1. Concatenating all `ext:name-part` payloads that do not have the `ext:hidden` qualifier.
-    2. Removing any U+002F characters (slash or solidus, `/`)
+    2. Removing any U+002F characters (slash or solidus, `/`), which `g7:type-NAME` cannot represent.
     3. Possibly delimit a part of the string with slashes:
         - If no part has type `gx:Surname`, do not add slashes.
-        - Otherwise, if there's one or more non-hidden part with type `gx:Surname` and qualifier `gx:Primary`, put a slash before the first such part and after the last such part.
-        - Otherwise, if there's one or more non-hidden part with type `gx:Surname`, put a slash before the first such part and after the last such part.
-        - If the result has slashes with one or more `gx:Given` part in between them, this name cannot be represented in the `g7:PersonalName` datatype, and slashes can be removed or not at the application's discretion.
-
+        - Otherwise, if there are name parts with type `gx:Surname` and qualifier `gx:Primary`, put a slash before the first such part and after the last such part.
+        - Otherwise, if there are parts with type `gx:Surname`, put a slash before the first such part and after the last such part.
+        
 * Create other personal name parts as follows:
     - Create a `g7:GIVN` for each part with type `gx:Given`
     - Create a `g7:SURN` for each part with type `gx:Surname`, unless it also has qualifier `gx:Particle` and precedes another `gx:Surname`: in that case, use `g7:SPFX` instead
     - Create a `g7:NPFX` for each part with type `gx:Prefix`
     - Create a `g7:NSFX` for each part with type `gx:Suffix`
-    - If using a rufname extension, create a rufname structure for the first part with type `gx:Given` and qualifier `gx:Primary`
+    - Create a `g7:NICK` for each part with qualifier `gx:Familiar` that does not also have a type
+    - If using a rufname extension, create a rufname structure for the concatenated sequence of parts with type `gx:Given` and qualifier `gx:Primary`
+

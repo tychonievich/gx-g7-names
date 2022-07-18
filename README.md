@@ -32,9 +32,7 @@ A part of a name.
 
 This structure is intended to be the GEDCOM 7 parallel of the GEDOCM-X element <http://gedcomx.org/v1/NamePart>.
 
-The payload of this structure should be a part of the name.
-
-The preferred order of `ext:PART` structures is the preferred display order of the name parts.
+The preferred order of `ext:name-part` structures is the preferred display order of the name parts.
 
 ### name-part-type
 

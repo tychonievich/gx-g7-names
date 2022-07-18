@@ -19,7 +19,7 @@ This extension consists of a three new extension structure types and a large num
 Extend the `PERSONAL_NAME_PIECES` production [in the GEDCOM 7 specification](https://gedcom.io/specifications/FamilySearchGEDCOMv7.html#PERSONAL_NAME_PIECES) with the following new term:
 
 ```gedstruct
-n _N_PART <Text>                       {0:M}  ext:name-part
+n _N_PART <Text>                        {0:M}  ext:name-part
   +1 _NP_TYPE <Enum>                    {0:1}  ext:name-part-type
   +1 _NP_QUAL <Enum>                    {0:M}  ext:name-part-qualifier
 ```

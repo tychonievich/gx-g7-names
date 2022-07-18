@@ -9,7 +9,7 @@ is shorthand for a URI beginning with the corresponding URI prefix
 | Short Prefix | URI Prefix                                     |
 |:-------------|:-----------------------------------------------|
 | `g7`         | `https://gedcom.io/terms/v7/`                  |
-| `gx`         | `https://gedcomx.org/`                         |
+| `gx`         | `http://gedcomx.org/`                          |
 | `ext`        | `https://tychonievich.github.io/gx-g7-names#`  |
 
 This extension consists of a three new extension structure types and a large number of new enumeration values, most taken directly from GEDCOM-X.

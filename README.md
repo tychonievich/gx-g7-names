@@ -10,7 +10,7 @@ is shorthand for a URI beginning with the corresponding URI prefix
 |:-------------|:-----------------------------------------------|
 | `g7`         | `https://gedcom.io/terms/v7/`                  |
 | `gx`         | `https://gedcomx.org/`                         |
-| `ext`        | `https://tychonievich.gedcom.io/gx-g7-names#`  |
+| `ext`        | `https://tychonievich.github.io/gx-g7-names#`  |
 
 This extension consists of a three new extension structure types and a large number of new enumeration values, most taken directly from GEDCOM-X.
 
@@ -28,7 +28,7 @@ It is worth noting that, [as with all documented GEDCOM 7 extensions](https://ge
 
 ### name-part
 
-URI: `https://tychonievich.gedcom.io/gx-g7-names#name-part`
+URI: `https://tychonievich.github.io/gx-g7-names#name-part`
 
 A part of a name.
 
@@ -38,7 +38,7 @@ The preferred order of `ext:name-part` structures is the preferred display order
 
 ### name-part-type
 
-URI: `https://tychonievich.gedcom.io/gx-g7-names#name-part-type`
+URI: `https://tychonievich.github.io/gx-g7-names#name-part-type`
 
 The type of a name part.
 Only four name part types are defined, and not all name parts need have a type.
@@ -58,7 +58,7 @@ The `ext:name-part-type` structure is optional, and should only be included if e
 
 ### ext:name-part-qualifier
 
-URI: `https://tychonievich.gedcom.io/gx-g7-names#name-part-qualifier`
+URI: `https://tychonievich.github.io/gx-g7-names#name-part-qualifier`
 
 A type-like descriptor of a name part.
 
@@ -84,13 +84,13 @@ The payload of this structure should be an enumerated value [documented by GEDCO
 | `http://gedcomx.org/Postnom`|A name mandated by law for populations from Congo Free State / Belgian Congo / Congo / Democratic Republic of Congo (formerly Zaire). |
 | `http://gedcomx.org/Particle`|A grammatical designation for articles (a, the, dem, las, el, etc.), prepositions (of, from, aus, zu, op, etc.), initials, annotations (e.g. twin, wife of, infant, unknown), comparators (e.g. Junior, Senior, younger, little), ordinals (e.g. III, eighth), descendancy words (e.g. ben, ibn, bat, bin, bint, bar), and conjunctions (e.g. and, or, nee, ou, y, o, ne, &amp;). |
 | `http://gedcomx.org/RootName`|The "root" of a name part as distinguished from prefixes or suffixes. For example, the root of the Polish name "Wilkówna" is "Wilk". |
-| `https://tychonievich.gedcom.io/gx-g7-names#hidden`|A name part that should not be displayed. |
+| `https://tychonievich.github.io/gx-g7-names#hidden`|A name part that should not be displayed. |
 
 Note that this extension adds one qualifier not present in GEDCOM-X:
 
 #### hidden
 
-URI: `https://tychonievich.gedcom.io/gx-g7-names#hidden`
+URI: `https://tychonievich.github.io/gx-g7-names#hidden`
 
 There may be cases where a part of a name should be represented in the data but not displayed when the name is formatted.
 For example, there is a Polish surname that is spelled "Kowalski" for men and mixed-gender groups but "Kowalska" for women; a researcher may wish to record both forms, but add the `ext:hidden` qualifier to the one that does not match the gender of the individual.
@@ -124,9 +124,9 @@ Per the GEDOCM 7 specification, the tags used for documented extension structure
 1 GEDC
 2 VERS 7.0
 1 SCHMA
-2 TAG _N_PART https://tychonievich.gedcom.io/gx-g7-names#name-part
-2 TAG _NP_TYPE https://tychonievich.gedcom.io/gx-g7-names#name-part-type
-2 TAG _NP_QUAL https://tychonievich.gedcom.io/gx-g7-names#name-part-qualifier
+2 TAG _N_PART https://tychonievich.github.io/gx-g7-names#name-part
+2 TAG _NP_TYPE https://tychonievich.github.io/gx-g7-names#name-part-type
+2 TAG _NP_QUAL https://tychonievich.github.io/gx-g7-names#name-part-qualifier
 2 TAG _GX_PREFIX http://gedcomx.org/Prefix
 2 TAG _GX_SUFFIX http://gedcomx.org/Suffix
 2 TAG _GX_GIVEN http://gedcomx.org/Given
@@ -147,7 +147,7 @@ Per the GEDOCM 7 specification, the tags used for documented extension structure
 2 TAG _GX_POSTNOM http://gedcomx.org/Postnom
 2 TAG _GX_PARTICLE http://gedcomx.org/Particle
 2 TAG _GX_ROOTNAME http://gedcomx.org/RootName
-2 TAG _NPQ_HIDDEN https://tychonievich.gedcom.io/gx-g7-names#hidden
+2 TAG _NPQ_HIDDEN https://tychonievich.github.io/gx-g7-names#hidden
 ```
 
 ## Name parts as the only stored data

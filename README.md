@@ -169,7 +169,7 @@ To populate the other name data from name parts,
         
 * Create other personal name parts as follows:
     - Create a `g7:GIVN` for each part with type `gx:Given`
-    - Create a `g7:SURN` for each part with type `gx:Surname`, unless it also has qualifier `gx:Particle` and precedes another `gx:Surname`: in that case, use `g7:SPFX` instead
+    - Create a `g7:SURN` for each part with type `gx:Surname`, unless it also has qualifier `gx:Particle` and precedes all `gx:Surname`s that lack `gx:Particle`: in that case, use `g7:SPFX` instead
     - Create a `g7:NPFX` for each part with type `gx:Prefix`
     - Create a `g7:NSFX` for each part with type `gx:Suffix`
     - Create a `g7:NICK` for each part with qualifier `gx:Familiar` that does not also have a type

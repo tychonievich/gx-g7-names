@@ -184,7 +184,7 @@ To populate the other name data from name parts,
 <span style="font-style: italic; color: #005a9c">Example &mdash; </span>
 Given the following gx-names extension data
 
-```gedcom
+<pre><code class="language-gedcom">
 2 _N_PART Dr.
 3 _NP_QUAL _GX_TITLE
 2 _N_PART  
@@ -199,13 +199,13 @@ Given the following gx-names extension data
 2 _N_PART Tychonievich
 3 _NP_TYPE _GX_SURNAME
 3 _NP_QUAL _GX_FAMILY
-```
+</code></pre>
 
 (where the visually-empty lines have a space in the payload)
 The algorithms would produce the following standard structures
 and rufname extension structure:
 
-```gedcom
+<pre><code class="language-gedcom">
 1 NAME Dr. Luther A. /Tychonievich/
 2 GIVN Luther
 2 _RUFNAM Luther
@@ -225,7 +225,8 @@ and rufname extension structure:
 2 _N_PART Tychonievich
 3 _NP_TYPE _GX_SURNAME
 3 _NP_QUAL _GX_FAMILY
-```
+</code></pre>
+
 
 </div>
 
